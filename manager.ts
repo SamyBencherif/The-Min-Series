@@ -90,7 +90,7 @@ function addCard(sketch: Sketch) {
 	newCardElement.className = "card"
 
 	let ico = document.createElement("img");
-	ico.src = "sketches/" + sketch.title + ".png";
+	ico.src = "icons/" + sketch.title + ".png";
 	ico.style.width = "34px";
 	ico.style.height = "34px";
 

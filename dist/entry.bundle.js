@@ -125,7 +125,7 @@ function addCard(sketch) {
     var newCardElement = document.createElement("div");
     newCardElement.className = "card";
     var ico = document.createElement("img");
-    ico.src = "sketches/" + sketch.title + ".png";
+    ico.src = "icons/" + sketch.title + ".png";
     ico.style.width = "34px";
     ico.style.height = "34px";
     newCardElement.appendChild(ico);
