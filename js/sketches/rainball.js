@@ -5,12 +5,12 @@ var Rainball = (function () {
         this.title = "rainball";
         this.followRate = 1;
         this.centerFactor = .99;
-        this.cursor = [0, 0];
         this.lockedInCenter = false;
     }
     Rainball.prototype.setup = function (size) {
         this.distanceSinceDrop = 0;
         this.trail = [];
+        this.cursor = { x: size.w / 2, y: size.h / 2 };
         this.position = { x: size.w / 2, y: size.h / 2 };
         this.velocity = { x: 0, y: 0 };
         this.acceleration = { x: 0, y: 0 };

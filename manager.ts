@@ -1,10 +1,12 @@
 
 import { Sketch } from "./sketch";
 
+import { Introduction } from "./sketches/introduction"
 import { EnergyAnimation } from "./sketches/energy";
-import { Radio } from "./sketches/radio"
-import { Rainball } from "./sketches/rainball"
-import { TicTacy } from "./sketches/tictacy"
+import { Radio } from "./sketches/radio";
+import { Rainball } from "./sketches/rainball";
+import { TicTacy } from "./sketches/tictacy";
+import { Spiral } from "./sketches/spiral";
 
 let canvas = document.getElementById('mainCanvas') as HTMLCanvasElement;
 
@@ -101,10 +103,11 @@ function addCard(sketch: Sketch) {
 	newCardElement.addEventListener("mousedown", function () { loadActionSet(sketch) });
 }
 
-let collection = [new EnergyAnimation, new Radio, new Rainball, new TicTacy];
+let collection = [new Introduction, new EnergyAnimation, new Radio, new Rainball, new TicTacy, new Spiral];
 
 loadActionSet(collection[0]);
 
 collection.forEach(sketch => {
-	addCard(sketch)
+	if (sketch.title != "introduction")
+		addCard(sketch);
 });

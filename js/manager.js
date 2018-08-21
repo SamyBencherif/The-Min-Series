@@ -1,9 +1,11 @@
 "use strict";
 exports.__esModule = true;
+var introduction_1 = require("./sketches/introduction");
 var energy_1 = require("./sketches/energy");
 var radio_1 = require("./sketches/radio");
 var rainball_1 = require("./sketches/rainball");
 var tictacy_1 = require("./sketches/tictacy");
+var spiral_1 = require("./sketches/spiral");
 var canvas = document.getElementById('mainCanvas');
 var res = 2.4;
 function setCanvasDimensions() {
@@ -62,9 +64,10 @@ function addCard(sketch) {
     cardsElement.appendChild(newCardElement);
     newCardElement.addEventListener("mousedown", function () { loadActionSet(sketch); });
 }
-var collection = [new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy];
+var collection = [new introduction_1.Introduction, new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy, new spiral_1.Spiral];
 loadActionSet(collection[0]);
 collection.forEach(function (sketch) {
-    addCard(sketch);
+    if (sketch.title != "introduction")
+        addCard(sketch);
 });
 //# sourceMappingURL=manager.js.map

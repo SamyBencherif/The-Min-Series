@@ -74,4 +74,4 @@ var EnergyAnimation = (function () {
     return EnergyAnimation;
 }());
 exports.EnergyAnimation = EnergyAnimation;
-//# sourceMappingURL=Energy.js.map
+//# sourceMappingURL=energy.js.map

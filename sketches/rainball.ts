@@ -13,7 +13,7 @@ export class Rainball implements Sketch {
 
 	followRate: number = 1;
 	centerFactor: number = .99;
-	cursor: { x: number, y: number } = [0, 0];
+	cursor: { x: number, y: number };
 
 	lockedInCenter: boolean = false;
 
@@ -21,6 +21,8 @@ export class Rainball implements Sketch {
 
 		this.distanceSinceDrop = 0;
 		this.trail = [];
+
+		this.cursor = { x: size.w / 2, y: size.h / 2 };
 
 		this.position = { x: size.w / 2, y: size.h / 2 };
 		this.velocity = { x: 0, y: 0 };

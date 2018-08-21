@@ -70,10 +70,12 @@
 "use strict";
 
 exports.__esModule = true;
-var energy_1 = __webpack_require__(7);
-var radio_1 = __webpack_require__(6);
-var rainball_1 = __webpack_require__(8);
-var tictacy_1 = __webpack_require__(9);
+var introduction_1 = __webpack_require__(1);
+var energy_1 = __webpack_require__(2);
+var radio_1 = __webpack_require__(3);
+var rainball_1 = __webpack_require__(4);
+var tictacy_1 = __webpack_require__(5);
+var spiral_1 = __webpack_require__(6);
 var canvas = document.getElementById('mainCanvas');
 var res = 2.4;
 function setCanvasDimensions() {
@@ -132,79 +134,54 @@ function addCard(sketch) {
     cardsElement.appendChild(newCardElement);
     newCardElement.addEventListener("mousedown", function () { loadActionSet(sketch); });
 }
-var collection = [new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy];
+var collection = [new introduction_1.Introduction, new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy, new spiral_1.Spiral];
 loadActionSet(collection[0]);
 collection.forEach(function (sketch) {
-    addCard(sketch);
+    if (sketch.title != "introduction")
+        addCard(sketch);
 });
 //# sourceMappingURL=manager.js.map
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var random = Math.random;
-var r = function () { return Math.random() - .5; };
-var rComp = function () { return Math.floor(256 * Math.random()); };
-var Radio = (function () {
-    function Radio() {
-        this.title = "radio";
+var Introduction = (function () {
+    function Introduction() {
+        this.title = "introduction";
     }
-    Radio.prototype.setup = function (size) {
-        this.lines = [];
-        this.mouseCursor = { x: size.w / 2, y: size.h / 2 };
-    };
-    Radio.prototype.update = function (ctx, size, t, dt) {
-        ctx.fillStyle = "black";
+    Introduction.prototype.setup = function (size) { };
+    Introduction.prototype.update = function (ctx, size, t, dt) {
+        ctx.fillStyle = "#eeeeee";
         ctx.fillRect(0, 0, size.w, size.h);
-        var ox = this.mouseCursor.x;
-        var oy = this.mouseCursor.y;
-        this.lines.push({ x1: ox + 46 * r(), y1: oy + 46 * r(), x2: ox + 46 * r(), y2: oy + 46 * r() });
-        this.lines.forEach(function (line) {
-            line.x1 -= ox;
-            line.y1 -= oy;
-            line.x2 -= ox;
-            line.y2 -= oy;
-            line.x1 *= 1 + random() / 10;
-            line.y1 *= 1 + random() / 10;
-            line.x2 *= 1 + random() / 10;
-            line.y2 *= 1 + random() / 10;
-            line.x1 += ox;
-            line.y1 += oy;
-            line.x2 += ox;
-            line.y2 += oy;
-            ctx.strokeStyle = "rgb(" + rComp() + "," + rComp() + "," + rComp() + ")";
-            ctx.lineWidth + 3;
-            ctx.beginPath();
-            ctx.lineTo(line.x1, line.y1);
-            ctx.lineTo(line.x2, line.y2);
-            ctx.stroke();
-        });
-        this.lines = this.lines.slice(this.lines.length - 500, this.lines.length);
+        ctx.strokeStyle = "#222831";
+        ctx.font = "50px Arial";
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.strokeText("Hello World", size.w / 2, size.h / 2);
+        ctx.fillStyle = "#393e46";
+        ctx.font = "20px Arial";
+        ctx.fillText("Welcome to The Min Series, a collection of minimal graphical applications.", size.w / 2, size.h / 2 + 50);
+        ctx.fillText("Created by Samy Bencherif.", size.w / 2, size.h / 2 + 100);
+        ctx.fillStyle = "#00adb5";
+        ctx.fillText("The Min Series", size.w / 2 - 150, size.h / 2 + 50 - .5);
     };
-    Radio.prototype.keydown = function (ev) { };
-    Radio.prototype.keyup = function (ev) { };
-    Radio.prototype.mousedown = function (ev) { };
-    Radio.prototype.mouseup = function (ev) { };
-    Radio.prototype.mousemove = function (ev) {
-        this.mouseCursor = { x: ev.clientX, y: ev.clientY };
-    };
-    Radio.prototype.mousewheel = function (ev) { };
-    return Radio;
+    Introduction.prototype.keydown = function (ev) { };
+    Introduction.prototype.keyup = function (ev) { };
+    Introduction.prototype.mousedown = function (ev) { };
+    Introduction.prototype.mouseup = function (ev) { };
+    Introduction.prototype.mousemove = function (ev) { };
+    Introduction.prototype.mousewheel = function (ev) { };
+    return Introduction;
 }());
-exports.Radio = Radio;
-//# sourceMappingURL=radio.js.map
+exports.Introduction = Introduction;
+//# sourceMappingURL=introduction.js.map
 
 /***/ }),
-/* 7 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -284,10 +261,69 @@ var EnergyAnimation = (function () {
     return EnergyAnimation;
 }());
 exports.EnergyAnimation = EnergyAnimation;
-//# sourceMappingURL=Energy.js.map
+//# sourceMappingURL=energy.js.map
 
 /***/ }),
-/* 8 */
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var random = Math.random;
+var r = function () { return Math.random() - .5; };
+var rComp = function () { return Math.floor(256 * Math.random()); };
+var Radio = (function () {
+    function Radio() {
+        this.title = "radio";
+    }
+    Radio.prototype.setup = function (size) {
+        this.lines = [];
+        this.mouseCursor = { x: size.w / 2, y: size.h / 2 };
+    };
+    Radio.prototype.update = function (ctx, size, t, dt) {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, size.w, size.h);
+        var ox = this.mouseCursor.x;
+        var oy = this.mouseCursor.y;
+        this.lines.push({ x1: ox + 46 * r(), y1: oy + 46 * r(), x2: ox + 46 * r(), y2: oy + 46 * r() });
+        this.lines.forEach(function (line) {
+            line.x1 -= ox;
+            line.y1 -= oy;
+            line.x2 -= ox;
+            line.y2 -= oy;
+            line.x1 *= 1 + random() / 10;
+            line.y1 *= 1 + random() / 10;
+            line.x2 *= 1 + random() / 10;
+            line.y2 *= 1 + random() / 10;
+            line.x1 += ox;
+            line.y1 += oy;
+            line.x2 += ox;
+            line.y2 += oy;
+            ctx.strokeStyle = "rgb(" + rComp() + "," + rComp() + "," + rComp() + ")";
+            ctx.lineWidth + 3;
+            ctx.beginPath();
+            ctx.lineTo(line.x1, line.y1);
+            ctx.lineTo(line.x2, line.y2);
+            ctx.stroke();
+        });
+        this.lines = this.lines.slice(this.lines.length - 500, this.lines.length);
+    };
+    Radio.prototype.keydown = function (ev) { };
+    Radio.prototype.keyup = function (ev) { };
+    Radio.prototype.mousedown = function (ev) { };
+    Radio.prototype.mouseup = function (ev) { };
+    Radio.prototype.mousemove = function (ev) {
+        this.mouseCursor = { x: ev.clientX, y: ev.clientY };
+    };
+    Radio.prototype.mousewheel = function (ev) { };
+    return Radio;
+}());
+exports.Radio = Radio;
+//# sourceMappingURL=radio.js.map
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -298,12 +334,12 @@ var Rainball = (function () {
         this.title = "rainball";
         this.followRate = 1;
         this.centerFactor = .99;
-        this.cursor = [0, 0];
         this.lockedInCenter = false;
     }
     Rainball.prototype.setup = function (size) {
         this.distanceSinceDrop = 0;
         this.trail = [];
+        this.cursor = { x: size.w / 2, y: size.h / 2 };
         this.position = { x: size.w / 2, y: size.h / 2 };
         this.velocity = { x: 0, y: 0 };
         this.acceleration = { x: 0, y: 0 };
@@ -377,7 +413,7 @@ exports.Rainball = Rainball;
 //# sourceMappingURL=rainball.js.map
 
 /***/ }),
-/* 9 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -475,6 +511,65 @@ var TicTacy = (function () {
 }());
 exports.TicTacy = TicTacy;
 //# sourceMappingURL=tictacy.js.map
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var Spiral = (function () {
+    function Spiral() {
+        this.title = "spiral";
+        this.points = [];
+    }
+    Spiral.prototype.setup = function (size) {
+        this.CTime = 0;
+        this.a = 0;
+        this.i = 1;
+        this.radiusSUga = 0;
+        this.offsetSUga = { x: 0, y: 0 };
+        this.attractionPoint = { x: size.w / 2 - 67, y: size.h / 2 };
+    };
+    Spiral.prototype.update = function (ctx, size, t, dt) {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, size.w, size.h);
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 1;
+        this.points.splice(0, this.points.length - 500);
+        var WMAX = Math.max(size.w, size.h);
+        this.CTime += dt;
+        if (this.CTime / 1000 > 10) {
+            this.CTime = 0;
+            this.i = -10 + 20 * Math.random();
+            this.radiusSUga = Math.random();
+            this.offsetSUga = { x: Math.random(), y: Math.random() };
+        }
+        this.points.push({ x: size.w / 2 + WMAX * Math.sin(this.a), y: size.h / 2 + WMAX * Math.cos(this.a) });
+        this.a += this.i;
+        ctx.beginPath();
+        if (this.points.length)
+            ctx.moveTo(this.points[0].x, this.points[0].y);
+        for (var p in this.points) {
+            this.points[p].x = (this.points[p].x - this.attractionPoint.x) * .99 + this.attractionPoint.x;
+            this.points[p].y = (this.points[p].y - this.attractionPoint.y) * .99 + this.attractionPoint.y;
+            ctx.lineTo(this.points[p].x, this.points[p].y);
+        }
+        ctx.stroke();
+    };
+    Spiral.prototype.keydown = function (ev) { };
+    Spiral.prototype.keyup = function (ev) { };
+    Spiral.prototype.mousedown = function (ev) { };
+    Spiral.prototype.mouseup = function (ev) { };
+    Spiral.prototype.mousemove = function (ev) {
+        this.attractionPoint = { x: ev.clientX, y: ev.clientY };
+    };
+    Spiral.prototype.mousewheel = function (ev) { };
+    return Spiral;
+}());
+exports.Spiral = Spiral;
+//# sourceMappingURL=spiral.js.map
 
 /***/ })
 /******/ ]);
