@@ -161,13 +161,13 @@ var Introduction = (function () {
         ctx.font = "50px Arial";
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
-        ctx.strokeText("Hello World", size.w / 2, size.h / 2);
+        ctx.strokeText("Hello World", size.w / 2, size.h / 2 - 50);
         ctx.fillStyle = "#393e46";
         ctx.font = "20px Arial";
-        ctx.fillText("Welcome to The Min Series, a collection of minimal graphical applications.", size.w / 2, size.h / 2 + 50);
-        ctx.fillText("Created by Samy Bencherif.", size.w / 2, size.h / 2 + 100);
+        ctx.fillText("Welcome to The Min Series, a collection of minimal graphical applications.", size.w / 2, size.h / 2);
+        ctx.fillText("Created by Samy Bencherif.", size.w / 2, size.h / 2 + 50);
         ctx.fillStyle = "#00adb5";
-        ctx.fillText("The Min Series", size.w / 2 - 150, size.h / 2 + 50 - .5);
+        ctx.fillText("The Min Series", size.w / 2 - 150, size.h / 2 - .5);
     };
     Introduction.prototype.keydown = function (ev) { };
     Introduction.prototype.keyup = function (ev) { };
