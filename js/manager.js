@@ -64,7 +64,7 @@ function addCard(sketch) {
     cardsElement.appendChild(newCardElement);
     newCardElement.addEventListener("mousedown", function () { loadActionSet(sketch); });
 }
-var collection = [new introduction_1.Introduction, new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy, new spiral_1.Spiral];
+var collection = [new introduction_1.Introduction, new energy_1.EnergyAnimation, new radio_1.Radio, new rainball_1.Rainball, new tictacy_1.TicTacy];
 loadActionSet(collection[0]);
 collection.forEach(function (sketch) {
     if (sketch.title != "introduction")
